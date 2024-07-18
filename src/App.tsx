@@ -24,6 +24,16 @@ function App() {
     ]);
   }, []);
 
+  const handleAddTodo = () => {
+    const newTodo = {
+      text: inputText,
+      completed: false,
+    };
+
+    setTodos([...todos, newTodo]);
+    setInputText("");
+  };
+
   return (
     <div className="container">
       <h1 className="text-center">TODO</h1>
@@ -38,11 +48,15 @@ function App() {
             setInputText(e.target.value);
           }}
         />
-        <button className="btn btn-success">ADD</button>
+        <button className="btn btn-success" onClick={handleAddTodo}>
+          ADD
+        </button>
       </div>
       <div className="mt-2">
         {todos.map((todo, index) => {
-          return <Todo key={index} text={todo.text} completed={todo.completed} />;
+          return (
+            <Todo key={index} text={todo.text} completed={todo.completed} />
+          );
         })}
       </div>
     </div>
