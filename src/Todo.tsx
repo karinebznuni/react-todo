@@ -21,6 +21,8 @@ export function Todo(props: Props) {
     props.onEdit(props.id, editText);
     setIsEditing(false);
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleInputChange = (e: any) => {
     setEditText(e.target.value);
   };
@@ -46,9 +48,13 @@ export function Todo(props: Props) {
 
       <div>
         {isEditing ? (
-          <button className="btn btn-success me-2" onClick={handleSave}>Save</button>
+          <button className="btn btn-success me-2" onClick={handleSave}>
+            Save
+          </button>
         ) : (
-          <button className="btn btn-warning me-2" onClick={handleEdit}>Edit</button>
+          <button className="btn btn-warning me-2" onClick={handleEdit}>
+            Edit
+          </button>
         )}
 
         <button className="btn btn-danger" onClick={props.onDelete}>
