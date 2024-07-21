@@ -21,7 +21,7 @@ export function Todo(props: Props) {
     props.onEdit(props.id, editText);
     setIsEditing(false);
   };
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: any) => {
     setEditText(e.target.value);
   };
 
