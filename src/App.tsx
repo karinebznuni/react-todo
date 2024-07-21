@@ -73,6 +73,18 @@ function App() {
     filteredTodos = todos;
   }
 
+
+  const handleEditTodo = (id: number, newText: string) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, text: newText };
+      } else {
+        return todo;
+      }
+    });
+    setTodos(updatedTodos);
+  };
+
   return (
     <div className="container">
       <h1 className="text-center">TODO</h1>
@@ -101,8 +113,10 @@ function App() {
               key={index}
               text={todo.text}
               completed={todo.completed}
+              id={todo.id}
               onDelete={() => handleDeleteTodo(todo.id)}
               onChecked={() => handleCheckedTodo(index)}
+              onEdit={handleEditTodo}
             />
           );
         })}
