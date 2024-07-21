@@ -38,7 +38,7 @@ export function Todo(props: Props) {
           value={editText}
           onChange={handleInputChange}
           onBlur={handleSave}
-          autoFocus 
+          autoFocus
         />
       ) : (
         <span>{props.text}</span>
