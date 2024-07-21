@@ -6,8 +6,8 @@ import { Filters } from "./Filters";
 type Todo = {
   text: string;
   completed: boolean;
+  id: number;
 };
-
 
 type TodoFilter = "ALL" | "IN_PROGRESS" | "COMPLETED";
 
@@ -21,10 +21,12 @@ function App() {
       {
         completed: false,
         text: "first",
+        id: 0,
       },
       {
         completed: false,
         text: "second",
+        id: 1,
       },
     ]);
   }, []);
@@ -33,15 +35,17 @@ function App() {
     const newTodo = {
       text: inputText,
       completed: false,
+      id: todos.length,
     };
 
     setTodos([...todos, newTodo]);
     setInputText("");
   };
-  const handleDeleteTodo = (index: number) => {
-    const filteredTodos = todos.filter((todo, i) => {
-      return i !== index;
+  const handleDeleteTodo = (id: number) => {
+    const filteredTodos = todos.filter((todo) => {
+      return todo.id !== id;
     });
+
     setTodos(filteredTodos);
   };
 
@@ -60,11 +64,11 @@ function App() {
   if (todoFIlter === "COMPLETED") {
     filteredTodos = todos.filter((todo) => {
       return todo.completed;
-    }) 
+    });
   } else if (todoFIlter === "IN_PROGRESS") {
     filteredTodos = todos.filter((todo) => {
       return !todo.completed;
-    }) 
+    });
   } else {
     filteredTodos = todos;
   }
@@ -97,7 +101,7 @@ function App() {
               key={index}
               text={todo.text}
               completed={todo.completed}
-              onDelete={() => handleDeleteTodo(index)}
+              onDelete={() => handleDeleteTodo(todo.id)}
               onChecked={() => handleCheckedTodo(index)}
             />
           );
